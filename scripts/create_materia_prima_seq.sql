@@ -1,0 +1,1 @@
+create table MATERIA_PRIMA_SEQ (next_val bigint) engine=InnoDB;

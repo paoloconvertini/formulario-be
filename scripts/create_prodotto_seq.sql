@@ -1,0 +1,1 @@
+create table PRODOTTO_SEQ (next_val bigint) engine=InnoDB;

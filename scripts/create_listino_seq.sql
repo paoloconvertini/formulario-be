@@ -1,0 +1,1 @@
+create table LISTINO_SEQ (next_val bigint) engine=InnoDB;

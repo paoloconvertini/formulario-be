@@ -1,0 +1,98 @@
+services:
+  authentication-service:
+    environment:
+      CORS_ORIGIN: "*"
+      AUTH_DB_USER: "root"
+      AUTH_DB_PASSWORD: "root"
+      AUTH_URL: "jdbc:mysql://formulario-db-auth:3307/auth"
+      CRYPTO_KEY: "PdSgVkYp3s6v9y/B"
+      LOG_DIR: "/logs/auth-service.log"
+      LOG_LEVEL: "ERROR"
+    #networks:
+      #- backend
+      #- frontend
+    image: "pconvertini/fo-auth-api:2.2"
+    container_name: "fo-auth-api"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - fo-db-auth
+    volumes:
+      - "/Users/pconvertini/IdeaProjects/formulario-be/jwt:/jwt"
+      - "/Users/pconvertini/IdeaProjects/logs/formulario:/logs"
+  fo-api-service:
+    environment:
+      CORS_ORIGIN: "*"
+      DB_USER: "sa"
+      DB_PASSWORD: "D@tabas3"
+      DB_URL: "jdbc:mysql://formulario-db-api:3306/api"
+      #DB_URL: "jdbc:sqlserver://192.168.1.56:1433;database=master;encrypt=true;trustServerCertificate=true;"
+      #CRON_EXPR: "30m"
+      LOG_DIR: "/logs/api-service.log"
+      LOG_LEVEL: "DEBUG"
+    #networks:
+     # - backend
+      #- frontend
+    image: "pconvertini/formulario-api:1.0"
+    container_name: "ge-api"
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/Users/pconvertini/IdeaProjects/formulario-be/jwt:/jwt"
+      - "/Users/pconvertini/IdeaProjects/logs/formulario:/logs"
+      - "/Users/pconvertini/IdeaProjects/formulario-be/formulario-api/src/main/resources/logo.jpg:/resources/logo.jpg"
+  fo-db-auth:
+   # networks:
+    #  - backend
+    image: "mysql:8.0"
+    container_name: "formulario-db-auth"
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ROOT_USERNAME: "root"
+      MYSQL_DATABASE: "auth"
+    volumes:
+      - authdata:/var/lib/mysql
+  fo-db-api:
+   # networks:
+    #  - backend
+    image: "mysql:8.0"
+    container_name: "formulario-db-api"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ROOT_USERNAME: "root"
+      MYSQL_DATABASE: "api"
+    volumes:
+      - apidata:/var/lib/mysql
+#  sqldata:
+#    image: mcr.microsoft.com/mssql/server:2022-CU11-ubuntu-22.04
+#    environment:
+#      - SA_PASSWORD=Pass@word
+#      - ACCEPT_EULA=Y
+#    ports:
+#      - "5434:1433"
+#    volumes:
+#      - apidata:/var/opt/mssql/data
+#  database-api:
+#    image: "mcr.microsoft.com/mssql/server:Docker Desktop 4.33.0"
+#  client:
+#    environment:
+#      BACKEND_BASE_URL: "http://192.168.1.56:8080/api/"
+#      BACKEND_BASE_AUTH_URL: "http://192.168.1.56:8081/api/"
+#    networks:
+#      - frontend
+#    image: "pconvertini/gestione-ordini:2.0"
+#    container_name: "ge-frontend"
+#    ports:
+#      - "4200:80"
+#networks:
+#  frontend:
+ # backend:
+volumes:
+  authdata:
+  apidata:
+#  apidata:
+
