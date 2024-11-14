@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Prodotto_senza_iva" pageWidth="575" pageHeight="842" whenNoDataType="BlankPage" columnWidth="573" leftMargin="1" rightMargin="1" topMargin="5" bottomMargin="5" whenResourceMissingType="Empty" uuid="eceac9f3-c1f5-457a-ab76-36296d3ed2eb">
+	<parameter name="prodottoReport" class="net.sf.jasperreports.engine.JRReport"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="tipoProdottoDescrizione" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoProdottoDescrizione]]></fieldDescription>
+	</field>
+	<field name="prodottoPdfDtos" class="java.util.List"/>
+	<detail>
+		<band height="110" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="573" height="30" forecolor="#FFFFFF" backcolor="#728E58" uuid="288e46d8-ad96-4366-81ce-c538fc3e9633"/>
+				<box padding="3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tipoProdottoDescrizione}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="500" y="30" width="73" height="30" uuid="a841c86e-f124-489a-a379-6f243a663b8b"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.25" lineColor="#728E58"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPONIBILE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="350" height="30" uuid="6d652648-a67f-487d-bd29-ecfa77feb86a"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.25" lineColor="#728E58"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#728E58"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#728E58"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#728E58"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIZIONE PRODOTTI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="30" width="80" height="30" uuid="60fa766e-dbca-4ea6-81c1-c7efd2a02bb9"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.25" lineColor="#728E58"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SACCO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="30" width="70" height="30" uuid="025abb88-115e-4eb9-be10-30c770bc7204"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.25" lineColor="#728E58"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PEDANA]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="-1" y="60" width="575" height="50" uuid="b86a94d7-a587-4480-8185-89205fd8c1cf"/>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{prodottoPdfDtos})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{prodottoReport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>
