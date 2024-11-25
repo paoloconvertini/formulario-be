@@ -2,11 +2,13 @@ package it.powercolle.service;
 
 import io.quarkus.logging.Log;
 import it.powercolle.dto.ListinoPdfDto;
+import it.powercolle.dto.ProdottoPdfDto;
 import it.powercolle.dto.TipoProdottoPdfDto;
 import jakarta.inject.Singleton;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRSaver;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.InputStream;
@@ -25,10 +27,23 @@ public class JasperService {
         if (list != null && !list.isEmpty()) {
             try {
                 Map<String, Object> parameters = new HashMap<>();
-                parameters.put("categoriaReport", compileReport("Categoria.jrxml"));
+                for (TipoProdottoPdfDto tipoProdottoPdfDto : list) {
+                    List<ProdottoPdfDto> prodottoPdfDtos = tipoProdottoPdfDto.getProdottoPdfDtos();
+                    prodottoPdfDtos.forEach(p -> {
+                        if(StringUtils.equals("KG", p.getProdottoUnitMisuSacco())){
+                            p.setRicavoPz("€/Q.LE " + String.format("%.2f", p.getRicavo()));
+                            p.setRicavoQle("€/PZ " + String.format("%.2f", (p.getRicavo()*(p.getProdottoQtaSacco()/100))));
+                        } else {
+                            p.setRicavoPz("€/PZ " + String.format("%.2f", p.getRicavo()));
+                        }
+                        p.setProdottoUnitMisuSacco(p.getProdottoUnitMisuSacco() + " " + String.format("%s", p.getProdottoQtaSacco()));
+                    });
+                }
                 if('0' == iva) {
+                    parameters.put("categoriaReport", compileReport("Categoria_senza_iva.jrxml"));
                     parameters.put("prodottoReport", compileReport("Prodotto_senza_iva.jrxml"));
                 } else {
+                    parameters.put("categoriaReport", compileReport("Categoria.jrxml"));
                     parameters.put("prodottoReport", compileReport("Prodotto.jrxml"));
                 }
                 ListinoPdfDto l = new ListinoPdfDto();

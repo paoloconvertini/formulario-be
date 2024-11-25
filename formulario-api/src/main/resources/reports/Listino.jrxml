@@ -87,7 +87,7 @@
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<box padding="3"/>
+				<box topPadding="7" leftPadding="4" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Justified">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
@@ -102,7 +102,7 @@ SDI: KRRH6B9]]></text>
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="180" height="89" uuid="c40e9abe-e08b-4d8e-a21a-9d8f2a934f10"/>
-				<box leftPadding="15"/>
+				<box topPadding="7" leftPadding="7"/>
 				<imageExpression><![CDATA["logo_pc.png"]]></imageExpression>
 			</image>
 		</band>

@@ -16,8 +16,11 @@
 	<field name="prodottoQtaPedana" class="java.lang.Double">
 		<fieldDescription><![CDATA[prodottoQtaPedana]]></fieldDescription>
 	</field>
-	<field name="ricavo" class="java.lang.Double">
-		<fieldDescription><![CDATA[ricavo]]></fieldDescription>
+	<field name="ricavoPz" class="java.lang.String">
+		<fieldDescription><![CDATA[ricavoPz]]></fieldDescription>
+	</field>
+	<field name="ricavoQle" class="java.lang.String">
+		<fieldDescription><![CDATA[ricavoQle]]></fieldDescription>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -26,28 +29,34 @@
 		<band height="26" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<textField isBlankWhenNull="true">
-				<reportElement x="1" y="-4" width="350" height="30" uuid="6147aaa6-9ae1-470a-8920-1437cf2deddd"/>
+				<reportElement x="1" y="-4" width="279" height="30" uuid="6147aaa6-9ae1-470a-8920-1437cf2deddd"/>
 				<box leftPadding="3"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{prodottoNome}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="351" y="-4" width="80" height="30" uuid="b833b83e-3d61-460d-aa1e-f7785e6b3250"/>
+				<reportElement x="278" y="-4" width="80" height="30" uuid="b833b83e-3d61-460d-aa1e-f7785e6b3250"/>
 				<box leftPadding="3"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[($F{prodottoUnitMisuSacco}!=null?$F{prodottoUnitMisuSacco}:"") + " " + ($F{prodottoQtaSacco}!=null?$F{prodottoQtaSacco}:"")]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{prodottoUnitMisuSacco}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="431" y="-4" width="70" height="30" uuid="1cb63291-0ada-4612-8f24-623175f22fdc"/>
+				<reportElement x="357" y="-4" width="70" height="30" uuid="1cb63291-0ada-4612-8f24-623175f22fdc"/>
 				<box leftPadding="3"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{prodottoQtaPedana}!=null?"Q.Li " + $F{prodottoQtaPedana}:""]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="501" y="-4" width="73" height="30" uuid="2f2bbcba-d69b-450c-9e9b-523b0cdea364"/>
+				<reportElement x="427" y="-4" width="73" height="30" uuid="2f2bbcba-d69b-450c-9e9b-523b0cdea364"/>
 				<box leftPadding="3"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{ricavo}!=null?($F{ricavo}+"/Q.Li"):""]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ricavoPz}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="501" y="-4" width="73" height="30" uuid="6a9f82a5-0914-4904-ab40-635e5b626110"/>
+				<box leftPadding="3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ricavoQle}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
