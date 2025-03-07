@@ -20,12 +20,8 @@ public class TokenService {
                 .collect(Collectors.toSet());
         long l = (System.currentTimeMillis() + 86400000) / 1000;
         JwtClaimsBuilder builder = Jwt.upn(user.username);
-        if(roles.contains("Venditore")){
-            builder.claim(Claims.nickname, user.codVenditore);
-            builder.claim(Claims.email, user.email);
-        }
         dto.setIdToken(builder.claim(Claims.full_name, user.getFullName())
-                .subject("gp-api-service").expiresAt(l).groups(roles).sign());
+                .subject("fo-api-service").expiresAt(l).groups(roles).sign());
         dto.setExpireIn(l);
         dto.setError(Boolean.FALSE);
         return dto;
