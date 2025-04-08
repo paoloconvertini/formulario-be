@@ -54,7 +54,7 @@ public class MateriaPrimaResource {
         materiaPrima.prezzo = dto.getPrezzo();
         materiaPrima.persist();
         materiaPrimaRegistroService.save(materiaPrima, user);
-        return Response.ok().build();
+        return Response.ok().entity(new ResponseDto("Materia prima aggiunta correttamente", false)).build();
     }
 
     @PUT

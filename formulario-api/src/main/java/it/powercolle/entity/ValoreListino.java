@@ -1,14 +1,17 @@
 package it.powercolle.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "VALORE_LISTINO")
-public class ValoreListino extends PanacheEntity {
+public class ValoreListino extends PanacheEntityBase {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
     @Column
     public Double valore;
 }

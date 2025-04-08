@@ -1,6 +1,7 @@
 package it.powercolle.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -9,7 +10,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "PRODOTTO", uniqueConstraints = @UniqueConstraint(columnNames = "nome"))
-public class Prodotto extends PanacheEntity {
+public class Prodotto extends PanacheEntityBase {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     @Column(length = 300)
     public String nome;

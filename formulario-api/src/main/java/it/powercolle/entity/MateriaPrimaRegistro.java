@@ -1,14 +1,19 @@
 package it.powercolle.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "MATERIA_PRIMA_REGISTRO")
-public class MateriaPrimaRegistro extends PanacheEntity {
+public class MateriaPrimaRegistro extends PanacheEntityBase {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "id_materia_prima")
     public MateriaPrima materiaPrima;

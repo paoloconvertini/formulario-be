@@ -1,13 +1,16 @@
 package it.powercolle.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "MATERIA_PRIMA")
-public class MateriaPrima extends PanacheEntity {
+public class MateriaPrima extends PanacheEntityBase {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     @Column(length = 300)
     public String nome;
@@ -20,4 +23,12 @@ public class MateriaPrima extends PanacheEntity {
 
     @Column(length = 2)
     public String tipologia;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
