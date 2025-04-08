@@ -15,7 +15,7 @@ public class Prodotto extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    public Long id;
 
     @Column(length = 300)
     public String nome;

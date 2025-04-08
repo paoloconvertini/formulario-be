@@ -13,7 +13,7 @@ public class MateriaPrimaRegistro extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    public Long id;
     @ManyToOne
     @JoinColumn(name = "id_materia_prima")
     public MateriaPrima materiaPrima;
