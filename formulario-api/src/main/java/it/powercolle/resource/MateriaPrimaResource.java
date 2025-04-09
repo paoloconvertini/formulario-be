@@ -52,6 +52,7 @@ public class MateriaPrimaResource {
         }
         materiaPrima.unitaMisura = dto.getUnitaMisura();
         materiaPrima.prezzo = dto.getPrezzo();
+        materiaPrima.tipologia = dto.getTipologia();
         materiaPrima.persist();
         materiaPrimaRegistroService.save(materiaPrima, user);
         return Response.ok().entity(new ResponseDto("Materia prima aggiunta correttamente", false)).build();
@@ -74,6 +75,9 @@ public class MateriaPrimaResource {
         }
         if(StringUtils.isNotBlank(dto.getUnitaMisura())) {
             entity.unitaMisura = dto.getUnitaMisura();
+        }
+        if(StringUtils.isNotBlank(dto.getTipologia())) {
+            entity.tipologia = dto.getTipologia();
         }
         materiaPrimaRegistroService.save(entity, user);
         return entity;

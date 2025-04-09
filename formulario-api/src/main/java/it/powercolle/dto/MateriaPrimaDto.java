@@ -14,5 +14,6 @@ public class MateriaPrimaDto implements Serializable {
     private final String nome;
     private final String unitaMisura;
     private final Double prezzo;
+    private final String tipologia;
 
 }
