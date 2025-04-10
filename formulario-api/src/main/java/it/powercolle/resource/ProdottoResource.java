@@ -1,6 +1,7 @@
 package it.powercolle.resource;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.panache.common.Parameters;
 import it.powercolle.dto.ProdottoDto;
 import it.powercolle.dto.ProdottoMateriePrimeDto;
 import it.powercolle.entity.*;
@@ -34,6 +35,15 @@ public class ProdottoResource {
     @RolesAllowed({ADMIN})
     public List<ProdottoDto> list() {
         return Prodotto.find("select p.id, p.nome FROM Prodotto p").project(ProdottoDto.class).list();
+    }
+    @GET
+    @RolesAllowed({ADMIN})
+    @Path("/by-tipo/{id}")
+    public List<ProdottoDto> listByTipoProdotto(Long id) {
+        return Prodotto.find("select p.id, p.nome FROM Prodotto p " +
+                                "where p.tipoProdotto.id=:id",
+                        Parameters.with("id", id))
+                .project(ProdottoDto.class).list();
     }
 
 }
