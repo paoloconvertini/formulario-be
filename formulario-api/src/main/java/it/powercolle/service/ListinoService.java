@@ -55,7 +55,8 @@ public class ListinoService {
                         "l.prodotto.unitMisuSacco, l.prodotto.qtaSacco, l.prodotto.qtaPedana, l.valoreListino.id, " +
                         "l.valoreListino.valore, l.ricavo " +
                         "FROM Listino l " +
-                        "WHERE l.valoreListino.id = ?1", id)
+                        "WHERE l.valoreListino.id = ?1 " +
+                        "ORDER BY l.prodotto.tipoProdotto.id ASC", id)
                 .project(ProdottoPdfDto.class).list();
     }
 }

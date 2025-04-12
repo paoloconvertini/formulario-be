@@ -8,6 +8,8 @@ import java.util.List;
 @Data
 public class TipoProdottoPdfDto implements Serializable {
 
+
+
     private String tipoProdottoDescrizione;
 
     List<ProdottoPdfDto> prodottoPdfDtos;
