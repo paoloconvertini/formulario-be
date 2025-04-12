@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class TipoProdottoPdfDto implements Serializable {
 
-
+    private Long tipoProdottoId;
 
     private String tipoProdottoDescrizione;
 

@@ -42,11 +42,12 @@ public class ListinoService {
         List<TipoProdottoPdfDto> tipoProdottoPdfDtoList = new ArrayList<>();
         for (String desc : prodottiByTipoMap.keySet()) {
             TipoProdottoPdfDto dto = new TipoProdottoPdfDto();
+            dto.setTipoProdottoId(prodottiByTipoMap.get(desc).get(0).getProdottoTipoProdottoId());
             dto.setTipoProdottoDescrizione(desc);
             dto.setProdottoPdfDtos(prodottiByTipoMap.get(desc));
             tipoProdottoPdfDtoList.add(dto);
         }
-        return tipoProdottoPdfDtoList.stream().sorted(Comparator.comparing(TipoProdottoPdfDto::getTipoProdottoDescrizione)).collect(Collectors.toList());
+        return tipoProdottoPdfDtoList.stream().sorted(Comparator.comparing(TipoProdottoPdfDto::getTipoProdottoId)).collect(Collectors.toList());
     }
 
     private List<ProdottoPdfDto> getListiniByValoreListino(String id) {
@@ -55,8 +56,7 @@ public class ListinoService {
                         "l.prodotto.unitMisuSacco, l.prodotto.qtaSacco, l.prodotto.qtaPedana, l.valoreListino.id, " +
                         "l.valoreListino.valore, l.ricavo " +
                         "FROM Listino l " +
-                        "WHERE l.valoreListino.id = ?1 " +
-                        "ORDER BY l.prodotto.tipoProdotto.id ASC", id)
+                        "WHERE l.valoreListino.id = ?1 ", id)
                 .project(ProdottoPdfDto.class).list();
     }
 }
