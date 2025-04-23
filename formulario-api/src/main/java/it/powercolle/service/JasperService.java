@@ -23,31 +23,40 @@ import java.util.Map;
 public class JasperService {
 
 
-    public File createReport(List<TipoProdottoPdfDto> list, Character iva) {
+    public File createReport(List<TipoProdottoPdfDto> list, Character iva, Character pubblico) {
         if (list != null && !list.isEmpty()) {
             try {
                 Map<String, Object> parameters = new HashMap<>();
+                LocalDate data = LocalDate.now();
                 for (TipoProdottoPdfDto tipoProdottoPdfDto : list) {
                     List<ProdottoPdfDto> prodottoPdfDtos = tipoProdottoPdfDto.getProdottoPdfDtos();
-                    prodottoPdfDtos.forEach(p -> {
+                    for (ProdottoPdfDto p : prodottoPdfDtos) {
+                        if(p.getDataValidita() != null) {
+                            data = p.getDataValidita();
+                        }
+                        if(pubblico == '1' && p.getProdottoPrezzoPubblico()!=null && p.getProdottoPrezzoPubblico()>0){
+                            p.setRicavo(p.getProdottoPrezzoPubblico());
+                        }
+                        if('1' == iva){
+                            p.setRicavo(p.getRicavo() + (p.getRicavo()*0.22));
+                        }
                         if(StringUtils.equals("KG", p.getProdottoUnitMisuSacco())){
                             p.setRicavoPz("€/Q.LE " + String.format("%.2f", p.getRicavo()));
                             p.setRicavoQle("€/PZ " + String.format("%.2f", (p.getRicavo()*(p.getProdottoQtaSacco()/100))));
                         } else {
                             p.setRicavoPz("€/PZ " + String.format("%.2f", p.getRicavo()));
                         }
-                        p.setProdottoUnitMisuSacco(p.getProdottoUnitMisuSacco() + " " + String.format("%s", p.getProdottoQtaSacco()));
-                    });
+                        if(p.getProdottoUnitMisuSacco() != null){
+                            p.setProdottoUnitMisuSacco(p.getProdottoUnitMisuSacco() + " " + String.format("%s", p.getProdottoQtaSacco()));
+                        }
+                    }
                 }
-                if('0' == iva) {
-                    parameters.put("categoriaReport", compileReport("Categoria_senza_iva.jrxml"));
-                    parameters.put("prodottoReport", compileReport("Prodotto_senza_iva.jrxml"));
-                } else {
-                    parameters.put("categoriaReport", compileReport("Categoria.jrxml"));
-                    parameters.put("prodottoReport", compileReport("Prodotto.jrxml"));
-                }
+
+                parameters.put("categoriaReport", compileReport("Categoria_senza_iva.jrxml"));
+                parameters.put("prodottoReport", compileReport("Prodotto_senza_iva.jrxml"));
+
                 ListinoPdfDto l = new ListinoPdfDto();
-                l.setData(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                l.setData(data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                 l.setCategoriaList(list);
 
                 JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(Collections.singletonList(l));

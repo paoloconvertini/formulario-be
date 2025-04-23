@@ -22,12 +22,12 @@ public class ListinoService {
     @Inject
     JasperService jasperService;
 
-    public File generaListino(String id, Character iva) {
+    public File generaListino(String id, Character iva, Character pubblico) {
         Log.debug(" ### INIZIO generazione report Listino " + id + " ###");
         List<TipoProdottoPdfDto> list = getListiniGroupByCategoria(id);
         File report;
             try {
-                report = jasperService.createReport(list, iva);
+                report = jasperService.createReport(list, iva, pubblico);
                 Log.debug(" ### FINE generazione report Listino ###");
             } catch (Exception e) {
                 report = null;
@@ -53,8 +53,8 @@ public class ListinoService {
     private List<ProdottoPdfDto> getListiniByValoreListino(String id) {
         return Listino.find("select l.id, l.prodotto.id, l.prodotto.nome, " +
                         "l.prodotto.tipoProdotto.id, l.prodotto.tipoProdotto.descrizione, " +
-                        "l.prodotto.unitMisuSacco, l.prodotto.qtaSacco, l.prodotto.qtaPedana, l.valoreListino.id, " +
-                        "l.valoreListino.valore, l.ricavo " +
+                        "l.prodotto.unitMisuSacco, l.prodotto.qtaSacco, l.prodotto.qtaPedana, l.prodotto.prezzoPubblico, " +
+                        " l.valoreListino.id, l.valoreListino.valore, l.valoreListino.dataValidita, l.ricavo " +
                         "FROM Listino l " +
                         "WHERE l.valoreListino.id = ?1 ", id)
                 .project(ProdottoPdfDto.class).list();

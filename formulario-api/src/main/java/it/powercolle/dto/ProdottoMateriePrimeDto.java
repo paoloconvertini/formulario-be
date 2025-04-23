@@ -22,6 +22,8 @@ public class ProdottoMateriePrimeDto implements Serializable {
     private  String prodottoNome;
     private  Double prodottoCosto;
 
+    private  Double prodottoPrezzoPubblico;
+
     private String prodottoUnitMisuSacco;
 
     private Double prodottoQtaSacco;
@@ -48,6 +50,7 @@ public class ProdottoMateriePrimeDto implements Serializable {
      */
     public ProdottoMateriePrimeDto(Long prodottoId, String prodottoNome, Double prodottoCosto, String prodottoUnitMisuSacco,
                                    Double prodottoQtaSacco, Double prodottoQtaPedana, LocalDateTime prodottoUpdateDate, String prodottoUpdateUser,
+                                   Double prodottoPrezzoPubblico,
                                    Long materiaPrimaId, String materiaPrimaNome, String materiaPrimaUnitaMisura,
                                    Double materiaPrimaPrezzo, Double percentuale, String materiaPrimaTipologia,
                                    TipoProdotto tipoProdotto ) {
@@ -59,6 +62,7 @@ public class ProdottoMateriePrimeDto implements Serializable {
         this.prodottoQtaPedana = prodottoQtaPedana;
         this.prodottoUpdateDate = prodottoUpdateDate;
         this.prodottoUpdateUser = prodottoUpdateUser;
+        this.prodottoPrezzoPubblico = prodottoPrezzoPubblico;
         this.materiaPrimaId = materiaPrimaId;
         this.materiaPrimaNome = materiaPrimaNome;
         this.materiaPrimaUnitaMisura = materiaPrimaUnitaMisura;

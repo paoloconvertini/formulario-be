@@ -43,4 +43,7 @@ public class Prodotto extends PanacheEntityBase {
     @Column(name = "quantita_pedana")
     public Double qtaPedana;
 
+    @Column(name = "prezzo_pubblico")
+    public Double prezzoPubblico;
+
 }

@@ -1,5 +1,6 @@
 package it.powercolle.resource;
 
+import io.quarkus.logging.Log;
 import io.quarkus.panache.common.Parameters;
 import it.powercolle.dto.ListinoDto;
 import it.powercolle.dto.MateriaPrimaDto;
@@ -33,11 +34,21 @@ public class TipoProdottoResource {
     @Transactional
     @RolesAllowed({ADMIN})
     public Response create(TipoProdotto tipoProdotto) {
-        Optional<TipoProdotto> optTp = TipoProdotto.find("descrizione=?1", tipoProdotto.descrizione).firstResultOptional();
-        if(optTp.isPresent()){
-            return Response.notModified().entity(new ResponseDto("Tipo prodotto già presente",true, Response.Status.FOUND)).build();
+        try {
+            if (tipoProdotto.id == null) {
+                tipoProdotto.persist();
+                return Response.ok(new ResponseDto("Tipo prodotto creato con successo", false)).build();
+            }
+
+            Optional<TipoProdotto> optTp = TipoProdotto.find("id=?1", tipoProdotto.id).firstResultOptional();
+            if (optTp.isPresent()) {
+                optTp.get().descrizione = tipoProdotto.descrizione;
+                optTp.get().persist();
+                return Response.ok().entity(optTp.get()).build();
+            }
+        } catch (Exception e) {
+            Log.error("Errore salvataggio Tipo prodotto", e);
         }
-        tipoProdotto.persist();
-        return Response.ok().build();
+        return Response.notModified().build();
     }
 }

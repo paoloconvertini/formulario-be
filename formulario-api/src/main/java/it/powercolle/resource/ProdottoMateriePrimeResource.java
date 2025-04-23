@@ -39,7 +39,7 @@ public class ProdottoMateriePrimeResource {
     public List<ProdottoMateriePrimeDto> ricettaById(Long id) {
         return Prodotto.find("SELECT p.prodotto.id, p.prodotto.nome, p.prodotto.costo, p.prodotto.unitMisuSacco, " +
                         "p.prodotto.qtaSacco, p.prodotto.qtaPedana, p.prodotto.updateDate, " +
-                        "p.prodotto.updateUser, p.materiaPrima.id, p.materiaPrima.nome, p.materiaPrima.unitaMisura, " +
+                        "p.prodotto.updateUser, p.prodotto.prezzoPubblico, p.materiaPrima.id, p.materiaPrima.nome, p.materiaPrima.unitaMisura, " +
                         "p.materiaPrima.prezzo, p.percentuale, p.materiaPrima.tipologia, p.prodotto.tipoProdotto " +
                         "FROM ProdottoMateriePrime p " +
                         "WHERE p.prodotto.id =?1", id)
@@ -106,6 +106,12 @@ public class ProdottoMateriePrimeResource {
         }
         if(prodottoMateriePrimeDtoList.get(0).getProdottoQtaPedana() != null) {
             prodotto.qtaPedana = prodottoMateriePrimeDtoList.get(0).getProdottoQtaPedana();
+        }
+        if(prodottoMateriePrimeDtoList.get(0).getProdottoNome() != null) {
+            prodotto.nome = prodottoMateriePrimeDtoList.get(0).getProdottoNome();
+        }
+        if(prodottoMateriePrimeDtoList.get(0).getProdottoPrezzoPubblico() != null) {
+            prodotto.prezzoPubblico = prodottoMateriePrimeDtoList.get(0).getProdottoPrezzoPubblico();
         }
         prodotto.updateDate = LocalDateTime.now();
         prodotto.costo = costo.get();

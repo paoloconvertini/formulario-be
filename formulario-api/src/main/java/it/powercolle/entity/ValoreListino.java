@@ -4,6 +4,8 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "VALORE_LISTINO")
 public class ValoreListino extends PanacheEntityBase {
@@ -14,4 +16,7 @@ public class ValoreListino extends PanacheEntityBase {
     public Long id;
     @Column
     public Double valore;
+
+    @Column(name = "data_validita")
+    public LocalDate dataValidita;
 }
