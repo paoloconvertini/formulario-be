@@ -43,7 +43,9 @@ public class ProdottoMateriePrimeDto implements Serializable {
     private  Double valoreListino;
     private String materiaPrimaTipologia;
 
-    private TipoProdotto tipoProdotto;
+    private Long tipoProdottoId;
+
+    private String tipoProdottoDescrizione;
 
     /**
      * {@link it.powercolle.resource.ProdottoMateriePrimeResource#ricettaById(Long)}  }
@@ -53,7 +55,7 @@ public class ProdottoMateriePrimeDto implements Serializable {
                                    Double prodottoPrezzoPubblico,
                                    Long materiaPrimaId, String materiaPrimaNome, String materiaPrimaUnitaMisura,
                                    Double materiaPrimaPrezzo, Double percentuale, String materiaPrimaTipologia,
-                                   TipoProdotto tipoProdotto ) {
+                                   Long tipoProdottoId, String tipoProdottoDescrizione ) {
         this.prodottoId = prodottoId;
         this.prodottoNome = prodottoNome;
         this.prodottoCosto = prodottoCosto;
@@ -69,6 +71,7 @@ public class ProdottoMateriePrimeDto implements Serializable {
         this.materiaPrimaPrezzo = materiaPrimaPrezzo;
         this.percentuale = percentuale;
         this.materiaPrimaTipologia = materiaPrimaTipologia;
-        this.tipoProdotto = tipoProdotto;
+        this.tipoProdottoId = tipoProdottoId;
+        this.tipoProdottoDescrizione = tipoProdottoDescrizione;
     }
 }
