@@ -1,8 +1,12 @@
 package it.powercolle.resource.weber;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import it.powercolle.dto.MateriaPrimaDto;
+import it.powercolle.dto.MateriaPrimaTipoDto;
+import it.powercolle.dto.MateriaPrimaWeberDto;
 import it.powercolle.dto.ResponseDto;
 import it.powercolle.entity.weber.MateriaPrimaWeber;
+import it.powercolle.enums.TipoMateriaPrimaEnum;
 import it.powercolle.service.MateriaPrimaRegistroService;
 import it.powercolle.service.weber.MateriaPrimaRegistroWeberService;
 import jakarta.annotation.security.RolesAllowed;
@@ -16,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.eclipse.microprofile.jwt.Claim;
 import org.eclipse.microprofile.jwt.Claims;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
