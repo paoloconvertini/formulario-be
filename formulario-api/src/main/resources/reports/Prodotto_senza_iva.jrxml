@@ -29,42 +29,42 @@
 		<band height="20" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<textField isBlankWhenNull="true">
-				<reportElement x="1" y="-4" width="279" height="24" uuid="6147aaa6-9ae1-470a-8920-1437cf2deddd"/>
+				<reportElement x="1" y="0" width="279" height="20" uuid="6147aaa6-9ae1-470a-8920-1437cf2deddd"/>
 				<box leftPadding="3"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{prodottoNome}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="278" y="-4" width="80" height="24" uuid="b833b83e-3d61-460d-aa1e-f7785e6b3250"/>
+				<reportElement x="278" y="0" width="80" height="20" uuid="b833b83e-3d61-460d-aa1e-f7785e6b3250"/>
 				<box leftPadding="3"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{prodottoUnitMisuSacco}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="357" y="-4" width="70" height="24" uuid="1cb63291-0ada-4612-8f24-623175f22fdc"/>
+				<reportElement x="357" y="0" width="70" height="20" uuid="1cb63291-0ada-4612-8f24-623175f22fdc"/>
 				<box leftPadding="3"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{prodottoQtaPedana}!=null?"Q.Li " + $F{prodottoQtaPedana}:""]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="427" y="-4" width="73" height="24" uuid="2f2bbcba-d69b-450c-9e9b-523b0cdea364"/>
+				<reportElement x="427" y="0" width="73" height="20" uuid="2f2bbcba-d69b-450c-9e9b-523b0cdea364"/>
 				<box leftPadding="3"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ricavoPz}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="501" y="-4" width="73" height="24" uuid="6a9f82a5-0914-4904-ab40-635e5b626110"/>
+				<reportElement x="501" y="0" width="73" height="20" uuid="6a9f82a5-0914-4904-ab40-635e5b626110"/>
 				<box leftPadding="3"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ricavoQle}]]></textFieldExpression>
 			</textField>

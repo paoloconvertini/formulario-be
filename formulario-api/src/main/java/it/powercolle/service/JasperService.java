@@ -39,12 +39,15 @@ public class JasperService {
                         }
                         if('1' == iva){
                             p.setRicavo(p.getRicavo() + (p.getRicavo()*0.22));
+                            tipoProdottoPdfDto.setHeaderImponibile("IMP. CON IVA");
+                        } else {
+                            tipoProdottoPdfDto.setHeaderImponibile("IMPONIBILE");
                         }
                         if(StringUtils.equals("KG", p.getProdottoUnitMisuSacco())){
                             p.setRicavoPz("€/Q.LE " + String.format("%.2f", p.getRicavo()));
                             p.setRicavoQle("€/PZ " + String.format("%.2f", (p.getRicavo()*(p.getProdottoQtaSacco()/100))));
                         } else {
-                            p.setRicavoPz("€/PZ " + String.format("%.2f", p.getRicavo()));
+                            p.setRicavoQle("€/PZ " + String.format("%.2f", p.getRicavo()));
                         }
                         if(p.getProdottoUnitMisuSacco() != null){
                             p.setProdottoUnitMisuSacco(p.getProdottoUnitMisuSacco() + " " + String.format("%s", p.getProdottoQtaSacco()));

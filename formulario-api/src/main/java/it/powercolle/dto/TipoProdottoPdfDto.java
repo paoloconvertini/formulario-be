@@ -13,4 +13,6 @@ public class TipoProdottoPdfDto implements Serializable {
     private String tipoProdottoDescrizione;
 
     List<ProdottoPdfDto> prodottoPdfDtos;
+
+    private String headerImponibile;
 }
