@@ -26,43 +26,81 @@
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="15" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<textField isBlankWhenNull="true">
-				<reportElement x="1" y="0" width="279" height="20" uuid="6147aaa6-9ae1-470a-8920-1437cf2deddd"/>
-				<box leftPadding="3"/>
+				<reportElement x="-1" y="0" width="251" height="15" uuid="6147aaa6-9ae1-470a-8920-1437cf2deddd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{prodottoNome}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="278" y="0" width="80" height="20" uuid="b833b83e-3d61-460d-aa1e-f7785e6b3250"/>
-				<box leftPadding="3"/>
+				<reportElement x="250" y="0" width="60" height="15" uuid="b833b83e-3d61-460d-aa1e-f7785e6b3250">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{prodottoUnitMisuSacco}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="357" y="0" width="70" height="20" uuid="1cb63291-0ada-4612-8f24-623175f22fdc"/>
-				<box leftPadding="3"/>
+				<reportElement x="310" y="0" width="60" height="15" uuid="1cb63291-0ada-4612-8f24-623175f22fdc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{prodottoQtaPedana}!=null?"Q.Li " + $F{prodottoQtaPedana}:""]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="427" y="0" width="73" height="20" uuid="2f2bbcba-d69b-450c-9e9b-523b0cdea364"/>
-				<box leftPadding="3"/>
+				<reportElement x="370" y="0" width="110" height="15" forecolor="#ED1E1A" uuid="2f2bbcba-d69b-450c-9e9b-523b0cdea364">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineColor="#030303"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ricavoPz}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="501" y="0" width="73" height="20" uuid="6a9f82a5-0914-4904-ab40-635e5b626110"/>
-				<box leftPadding="3"/>
+				<reportElement x="480" y="0" width="94" height="15" forecolor="#728E58" uuid="6a9f82a5-0914-4904-ab40-635e5b626110">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineColor="#030303"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>

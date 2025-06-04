@@ -28,6 +28,7 @@ public class JasperService {
             try {
                 Map<String, Object> parameters = new HashMap<>();
                 LocalDate data = LocalDate.now();
+                String valoreListino = "";
                 for (TipoProdottoPdfDto tipoProdottoPdfDto : list) {
                     List<ProdottoPdfDto> prodottoPdfDtos = tipoProdottoPdfDto.getProdottoPdfDtos();
                     for (ProdottoPdfDto p : prodottoPdfDtos) {
@@ -37,20 +38,40 @@ public class JasperService {
                         if(pubblico == '1' && p.getProdottoPrezzoPubblico()!=null && p.getProdottoPrezzoPubblico()>0){
                             p.setRicavo(p.getProdottoPrezzoPubblico());
                         }
+                        valoreListino = String.format("%.2f", p.getValoreListinoValore());
                         if('1' == iva){
                             p.setRicavo(p.getRicavo() + (p.getRicavo()*0.22));
-                            tipoProdottoPdfDto.setHeaderImponibile("IMP. CON IVA");
+                            tipoProdottoPdfDto.setHeaderImponibile("Prezzo imp.a Q.LE Iva compresa");
+                            if(tipoProdottoPdfDto.getTipoProdottoId() == 11){
+                                tipoProdottoPdfDto.setHeaderSacco("Euro a rotolo iva compresa");
+                            } else {
+                                tipoProdottoPdfDto.setHeaderSacco("Prezzo a sacco iva compresa");
+                            }
                         } else {
-                            tipoProdottoPdfDto.setHeaderImponibile("IMPONIBILE");
+                            tipoProdottoPdfDto.setHeaderImponibile("Prezzo imp.a Q.LE Iva esclusa");
+                            if(tipoProdottoPdfDto.getTipoProdottoId() == 11){
+                                tipoProdottoPdfDto.setHeaderSacco("Euro a rotolo iva esclusa");
+                            } else {
+                                tipoProdottoPdfDto.setHeaderSacco("Prezzo a sacco iva esclusa");
+                            }
+
                         }
-                        if(StringUtils.equals("KG", p.getProdottoUnitMisuSacco())){
+                        if(StringUtils.equals("KG", p.getProdottoUnitMisuSacco())) {
+                            if(p.getProdottoQtaSacco() >=20){
+                                p.setRicavoPz("€/Q.LE " + String.format("%.2f", p.getRicavo()));
+                            }
+                            p.setRicavoQle("€/PZ " + String.format("%.2f", (p.getRicavo() * (p.getProdottoQtaSacco() / 100))));
+                        } else if (StringUtils.equals("QL", p.getProdottoUnitMisuSacco())){
                             p.setRicavoPz("€/Q.LE " + String.format("%.2f", p.getRicavo()));
-                            p.setRicavoQle("€/PZ " + String.format("%.2f", (p.getRicavo()*(p.getProdottoQtaSacco()/100))));
                         } else {
                             p.setRicavoQle("€/PZ " + String.format("%.2f", p.getRicavo()));
                         }
                         if(p.getProdottoUnitMisuSacco() != null){
-                            p.setProdottoUnitMisuSacco(p.getProdottoUnitMisuSacco() + " " + String.format("%s", p.getProdottoQtaSacco()));
+                            String prodottoUnitMisuSacco = p.getProdottoUnitMisuSacco();
+                            if(p.getProdottoQtaSacco() != null){
+                                prodottoUnitMisuSacco += " " + String.format("%s", p.getProdottoQtaSacco());
+                            }
+                            p.setProdottoUnitMisuSacco(prodottoUnitMisuSacco);
                         }
                     }
                 }
@@ -61,6 +82,7 @@ public class JasperService {
                 ListinoPdfDto l = new ListinoPdfDto();
                 l.setData(data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                 l.setCategoriaList(list);
+                l.setValoreListino(valoreListino);
 
                 JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(Collections.singletonList(l));
                 JasperReport jasperReport = compileReport("Listino.jrxml");

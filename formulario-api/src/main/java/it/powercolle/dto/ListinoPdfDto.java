@@ -12,5 +12,8 @@ import java.util.List;
 @Data
 public class ListinoPdfDto implements Serializable {
     private String data;
+
+    private String valoreListino;
+
     private List<TipoProdottoPdfDto> categoriaList;
 }

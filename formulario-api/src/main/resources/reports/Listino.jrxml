@@ -68,12 +68,9 @@
 	</queryString>
 	<field name="categoriaList" class="java.util.List"/>
 	<field name="data" class="java.lang.String"/>
+	<field name="valoreListino" class="java.lang.String"/>
 	<background>
 		<band height="800" splitType="Immediate">
-			<image scaleImage="Clip" hAlign="Center" vAlign="Middle" onErrorType="Icon" evaluationTime="Page">
-				<reportElement positionType="Float" mode="Transparent" x="0" y="0" width="575" height="800" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" backcolor="#E8E8E8" uuid="fe4f4fcd-6138-41d9-ae61-14fa60c0a64c"/>
-				<imageExpression><![CDATA["sfondo.jpg"]]></imageExpression>
-			</image>
 			<rectangle>
 				<reportElement mode="Opaque" x="0" y="0" width="575" height="800" backcolor="rgba(255, 255, 255, 0.7019608)" uuid="2a927f10-0ad1-41a2-8602-60a834d77bdb"/>
 			</rectangle>
@@ -112,7 +109,7 @@ SDI: KRRH6B9]]></text>
 			<textField>
 				<reportElement x="0" y="0" width="574" height="24" uuid="9a4bc88d-41bd-4c05-b794-0a2bf83d49a4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["LISTINO PREZZI -  " + $F{data}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["LISTINO PREZZI " + $F{valoreListino} + " -  IN VIGORE DAL " + $F{data}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="449" y="0" width="61" height="25" uuid="bd90bd44-45c9-49a0-a273-437000c4c9cc"/>

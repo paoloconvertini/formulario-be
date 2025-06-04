@@ -15,4 +15,6 @@ public class TipoProdottoPdfDto implements Serializable {
     List<ProdottoPdfDto> prodottoPdfDtos;
 
     private String headerImponibile;
+
+    private String headerSacco;
 }
