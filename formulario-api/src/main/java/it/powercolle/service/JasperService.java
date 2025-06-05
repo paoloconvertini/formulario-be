@@ -69,7 +69,7 @@ public class JasperService {
                         if(p.getProdottoUnitMisuSacco() != null){
                             String prodottoUnitMisuSacco = p.getProdottoUnitMisuSacco();
                             if(p.getProdottoQtaSacco() != null){
-                                prodottoUnitMisuSacco += " " + String.format("%s", p.getProdottoQtaSacco());
+                                prodottoUnitMisuSacco += " " + p.getProdottoQtaSacco().intValue();
                             }
                             p.setProdottoUnitMisuSacco(prodottoUnitMisuSacco);
                         }

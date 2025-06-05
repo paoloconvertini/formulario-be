@@ -26,7 +26,11 @@ public class ProdottoPdfDto implements Serializable {
 
     private String ricavoQle;
 
+    private String ricavoQleIva;
+
     private String ricavoPz;
+
+    private String ricavoPzIva;
 
     public ProdottoPdfDto(Long id, Long prodottoId, String prodottoNome, Long prodottoTipoProdottoId, String prodottoTipoProdottoDescrizione,
                           String prodottoUnitMisuSacco, Double prodottoQtaSacco, Double prodottoQtaPedana, Double prodottoPrezzoPubblico,

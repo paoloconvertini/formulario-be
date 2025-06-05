@@ -86,7 +86,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#030303"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="7" isBold="true"/>
+					<font size="8" isBold="true"/>
 					<paragraph leftIndent="3"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{headerImponibile}]]></textFieldExpression>
@@ -106,7 +106,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#030303"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="7" isBold="true"/>
+					<font size="8" isBold="true"/>
 					<paragraph spacingBefore="0"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{headerSacco}]]></textFieldExpression>

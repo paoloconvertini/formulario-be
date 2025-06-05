@@ -12,6 +12,7 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -59,7 +60,34 @@ public class ListinoResource {
     @RolesAllowed({ADMIN})
     @Path("/dettaglio/{id}")
     public List<TipoProdottoPdfDto> listiniByIdValoreListino(String id) {
-        return service.getListiniGroupByCategoria(id);
+        List<TipoProdottoPdfDto> list = service.getListiniGroupByCategoria(id);
+        for (TipoProdottoPdfDto tipoProdottoPdfDto : list) {
+            List<ProdottoPdfDto> prodottoPdfDtos = tipoProdottoPdfDto.getProdottoPdfDtos();
+            for (ProdottoPdfDto p : prodottoPdfDtos) {
+                if(StringUtils.equals("KG", p.getProdottoUnitMisuSacco())) {
+                    if(p.getProdottoQtaSacco() >=20){
+                        p.setRicavoQle("€/Q.LE " + String.format("%.2f", p.getRicavo()));
+                        p.setRicavoQleIva("€/Q.LE " + String.format("%.2f", (p.getRicavo() + (p.getRicavo()*0.22))));
+                    }
+                    p.setRicavoPz("€/PZ " + String.format("%.2f", (p.getRicavo() * (p.getProdottoQtaSacco() / 100))));
+                    p.setRicavoPzIva("€/PZ " + String.format("%.2f", ((p.getRicavo() + (p.getRicavo()*0.22)) * (p.getProdottoQtaSacco() / 100))));
+                } else if (StringUtils.equals("QL", p.getProdottoUnitMisuSacco())){
+                    p.setRicavoQle("€/Q.LE " + String.format("%.2f", p.getRicavo()));
+                    p.setRicavoQleIva("€/Q.LE " + String.format("%.2f", (p.getRicavo() + (p.getRicavo()*0.22))));
+                } else {
+                    p.setRicavoPz("€/PZ " + String.format("%.2f", p.getRicavo()));
+                    p.setRicavoPzIva("€/PZ " + String.format("%.2f", (p.getRicavo() + (p.getRicavo()*0.22))));
+                }
+                if(p.getProdottoUnitMisuSacco() != null){
+                    String prodottoUnitMisuSacco = p.getProdottoUnitMisuSacco();
+                    if(p.getProdottoQtaSacco() != null){
+                        prodottoUnitMisuSacco += " " + p.getProdottoQtaSacco().intValue();
+                    }
+                    p.setProdottoUnitMisuSacco(prodottoUnitMisuSacco);
+                }
+            }
+        }
+        return list;
     }
 
     @GET
