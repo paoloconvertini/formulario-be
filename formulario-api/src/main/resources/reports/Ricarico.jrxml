@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Materia_Prima" pageWidth="575" pageHeight="842" whenNoDataType="BlankPage" columnWidth="573" leftMargin="1" rightMargin="1" topMargin="2" bottomMargin="2" whenResourceMissingType="Empty" uuid="eceac9f3-c1f5-457a-ab76-36296d3ed2eb">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="ricarico" class="java.lang.String">
+		<fieldDescription><![CDATA[ricarico]]></fieldDescription>
+	</field>
+	<field name="valore" class="java.lang.String">
+		<fieldDescription><![CDATA[valore]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="473" y="0" width="50" height="15" forecolor="#050505" uuid="a5ba6d02-5d5c-46d6-b97b-939e6dad5662">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineColor="#030303"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ricarico}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="523" y="0" width="50" height="15" forecolor="#030303" uuid="f8505dc8-2e30-41f9-a53d-18c9cf000c12">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineColor="#030303"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valore}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -2,6 +2,7 @@ package it.powercolle.service;
 
 import io.quarkus.logging.Log;
 import io.quarkus.panache.common.Parameters;
+import it.powercolle.dto.ListinoDto;
 import it.powercolle.dto.ListinoPdfDto;
 import it.powercolle.dto.ProdottoPdfDto;
 import it.powercolle.dto.TipoProdottoPdfDto;
@@ -58,5 +59,10 @@ public class ListinoService {
                         "FROM Listino l " +
                         "WHERE l.valoreListino.id = ?1 ", id)
                 .project(ProdottoPdfDto.class).list();
+    }
+
+    public List<ListinoDto> listiniByIdProdotto(String id) {
+        return Listino.find("select l.prodotto.id, l.valoreListino.id, l.ricavo FROM Listino l WHERE l.prodotto.id = :id",
+                Parameters.with("id", id)).project(ListinoDto.class).list();
     }
 }

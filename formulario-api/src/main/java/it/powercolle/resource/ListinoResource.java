@@ -32,8 +32,7 @@ public class ListinoResource {
     @RolesAllowed({ADMIN})
     @Path("/{id}")
     public List<ListinoDto> listiniByIdProdotto(String id) {
-        return Listino.find("select l.prodotto.id, l.valoreListino.id, l.ricavo FROM Listino l WHERE l.prodotto.id = :id",
-                Parameters.with("id", id)).project(ListinoDto.class).list();
+        return service.listiniByIdProdotto(id);
     }
 
     @POST
