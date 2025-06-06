@@ -81,6 +81,7 @@ public class JasperService {
                 l.setData(data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                 l.setCategoriaList(list);
                 l.setValoreListino(valoreListino);
+                l.setAnno(String.valueOf(data.getYear()));
 
                 JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(Collections.singletonList(l));
                 JasperReport jasperReport = compileReport("Listino.jrxml");

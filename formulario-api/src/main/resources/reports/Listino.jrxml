@@ -69,13 +69,7 @@
 	<field name="categoriaList" class="java.util.List"/>
 	<field name="data" class="java.lang.String"/>
 	<field name="valoreListino" class="java.lang.String"/>
-	<background>
-		<band height="800" splitType="Immediate">
-			<rectangle>
-				<reportElement mode="Opaque" x="0" y="0" width="575" height="800" backcolor="rgba(255, 255, 255, 0.7019608)" uuid="2a927f10-0ad1-41a2-8602-60a834d77bdb"/>
-			</rectangle>
-		</band>
-	</background>
+	<field name="anno" class="java.lang.String"/>
 	<title>
 		<band height="89" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -108,9 +102,26 @@ SDI: KRRH6B9]]></text>
 		<band height="25">
 			<textField>
 				<reportElement x="0" y="0" width="574" height="24" uuid="9a4bc88d-41bd-4c05-b794-0a2bf83d49a4"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["LISTINO PREZZI " + $F{valoreListino} + " -  IN VIGORE DAL " + $F{data}]]></textFieldExpression>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["LISTINO PREZZI " + $F{valoreListino} + " - " + $F{anno} +"  IN VIGORE DAL " + $F{data}]]></textFieldExpression>
 			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="106">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<subreport>
+				<reportElement x="0" y="0" width="575" height="106" uuid="b86a94d7-a587-4480-8185-89205fd8c1cf"/>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{categoriaList})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{categoriaReport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25">
 			<textField>
 				<reportElement x="449" y="0" width="61" height="25" uuid="bd90bd44-45c9-49a0-a273-437000c4c9cc"/>
 				<textElement textAlignment="Right">
@@ -126,16 +137,5 @@ SDI: KRRH6B9]]></text>
 				<textFieldExpression><![CDATA[" di " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
-	</columnHeader>
-	<detail>
-		<band height="106">
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<subreport>
-				<reportElement x="0" y="0" width="575" height="106" uuid="b86a94d7-a587-4480-8185-89205fd8c1cf"/>
-				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{categoriaList})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{categoriaReport}]]></subreportExpression>
-			</subreport>
-		</band>
-	</detail>
+	</pageFooter>
 </jasperReport>

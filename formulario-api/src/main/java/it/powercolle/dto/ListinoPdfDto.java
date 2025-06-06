@@ -16,4 +16,6 @@ public class ListinoPdfDto implements Serializable {
     private String valoreListino;
 
     private List<TipoProdottoPdfDto> categoriaList;
+
+    private String anno;
 }
